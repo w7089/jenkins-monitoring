@@ -1,11 +1,12 @@
 version: "3"
 
+
 services:
   jenkins:
     build: ./jenkins
     image: jenkins-customized
     volumes: 
-      - jenkins-vol:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
     ports: 
       - "8080:8080"
     networks: 
@@ -54,7 +55,7 @@ networks:
   monit-network:
 
 volumes:
-  jenkins-vol:  
+  jenkins-data:  
 
 
 
