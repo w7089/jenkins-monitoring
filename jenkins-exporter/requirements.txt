@@ -1,1 +1,2 @@
 prometheus-client==0.11.0
+api4jenkins==v1.6
