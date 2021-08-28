@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  jenkins:
+    build: ./jenkins
+    image: jenkins-customized
+    volumes: 
+      - jenkins-vol:/var/jenkins_home
+    ports: 
+      - "8080:8080"
+    networks: 
+      - monit-network
+    env_file: .env
+    expose: 
+      - 8080
+
+  jenkins-exporter:
+    build: ./jenkins-exporter      
+    image: jenkins-exporter
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./jenkins-exporter/exporter.py:/usr/src/app/exporter.py
+    depends_on: 
+      - jenkins
+    expose: 
+      - 8000    
+    networks: 
+      - monit-network      
+
+  prometheus:
+    build: ./prometheus
+    image: prom/prometheus:v2.3.1
+    ports: 
+      - "9090:9090"
+    networks: 
+      - monit-network
+    volumes: 
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    expose: 
+      - 9090
+    depends_on: 
+      - jenkins-exporter
+
+  grafana:
+    build: ./grafana
+    image: grafana-customized
+    ports:
+      - "3000:3000"
+    networks:
+      - monit-network
+
+networks: 
+  monit-network:
+
+volumes:
+  jenkins-vol:  
+
+
+
+
