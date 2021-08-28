@@ -1,6 +1,5 @@
 version: "3"
 
-
 services:
   jenkins:
     build: ./jenkins
@@ -15,6 +14,14 @@ services:
     expose: 
       - 8080
 
+  jenkins-initializer:
+    build: ./jenkins-initializer
+    image: jenkins-initializer
+    networks: 
+      - monit-network
+    depends_on: 
+      - jenkins
+        
   jenkins-exporter:
     build: ./jenkins-exporter      
     image: jenkins-exporter
