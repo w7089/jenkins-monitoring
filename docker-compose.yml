@@ -68,7 +68,7 @@ services:
       jenkins-exporter:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "http://localhost:9090/graph"]
+      test: ["CMD", "wget", "http://localhost:9090"]
       interval: 10s
       timeout: 15s
       retries: 10
