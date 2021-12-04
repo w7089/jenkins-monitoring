@@ -8,4 +8,4 @@ Jenkins monitoring using Prometheus stack and custom Jenkins Prometheus exporter
 - login as `admin`, `admin`, skip password change. 
 - you should see Jenkins job count metrics.
 
-Detailed explanation on how this demo was built is [here](https://rokpoto.com/create-custom-python-prometheus-exporter/)
+[How to create and debug custom Python Prometheus exporter](https://rokpoto.com/create-custom-python-prometheus-exporter/) demo post shows more details.
